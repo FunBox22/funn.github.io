@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Kings Quest</title>
+
+  <style>
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 20px;
+      color: #111;
+    }
+
+    /* LANDING PAGE */
+
+    .landing-page {
+      position: fixed;
+      inset: 0;
+      background: url('images/Main.jpg') center/cover no-repeat;
+      z-index: 9999;
+    }
+
+    .landing-overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.65);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .landing-content {
+      text-align: center;
+      color: white;
+      max-width: 650px;
+
+      animation: fadeIn 0.8s ease;
+    }
+
+    .landing-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid rgba(255,255,255,0.2);
+    }
+
+    .landing-content h1 {
+      font-size: 52px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .landing-content p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .enter-btn {
+      background: #6d28d9;
+      color: white;
+      border: none;
+      padding: 15px 35px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: bold;
+    }
+
+    .enter-btn:hover {
+      background: #5b21b6;
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MAIN SITE */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .logo span {
+      font-size: 22px;
+      font-weight: bold;
+      color: #6d28d9;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #f5f3ff;
+      color: #6d28d9;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: bold;
+    }
+
+    .tab:hover,
+    .tab.active {
+      background: #6d28d9;
+      color: white;
+    }
+
+    h1 {
+      text-align: center;
+      color: #6d28d9;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid #eee;
+
+      display: flex;
+      flex-direction: column;
+
+      height: 320px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(109,40,217,0.2);
+    }
+
+    img.property {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+      color: #6d28d9;
+    }
+
+    .name {
+      margin-top: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      min-height: 40px;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 20px;
+      background: #fafafa;
+      border-radius: 10px;
+      border: 1px solid #eee;
+    }
+
+    /* GLOBAL CONTACT */
+
+    .global-contact {
+      max-width: 1100px;
+      margin: 40px auto;
+    }
+
+    .detail {
+      display: none;
+      max-width: 800px;
+      margin: auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .detail img {
+      width: 100%;
+      border-radius: 10px;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .back {
+      margin-bottom: 15px;
+      padding: 10px 14px;
+      background: #6d28d9;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .back:hover {
+      background: #5b21b6;
+    }
+
+    .tab-section {
+      display: none;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    .faq-box {
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+
+    .faq-item h3 {
+      color: #6d28d9;
+      margin-bottom: 8px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- LANDING PAGE -->
+
+<div id="landingPage" class="landing-page">
+
+  <div class="landing-overlay">
+
+    <div class="landing-content">
+
+      <img src="images/Main.jpg" class="landing-logo" />
+
+      <h1>Welcome to The Kings Quest</h1>
+
+      <p>
+        Premium selections curated with quality, consistency, and experience in mind.
+        Explore our collection and discover what sets The Kings Quest apart.
+      </p>
+
+      <button class="enter-btn" onclick="enterSite()">
+        Enter Site
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MAIN WEBSITE -->
+
+<div class="header">
+
+  <div class="logo">
+    <img src="images/Main.jpg" />
+    <span>The Kings Quest</span>
+  </div>
+
+</div>
+
+<div class="container" id="mainPage">
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('flower', this)">Flower</div>
+    <div class="tab" onclick="showTab('faq', this)">FAQ</div>
+  </div>
+
+  <!-- FLOWER -->
+
+  <div id="flower" class="tab-section active">
+
+    <h1>Flower</h1>
+
+    <div class="grid">
+
+      <div class="card" onclick="openDetail('images/grapes.jpg','14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500','Grapes & Cream','Smooth creamy flavor with fruity notes.')">
+
+        <img class="property" src="images/grapes.jpg" />
+
+        <div class="price">$52 - $1150</div>
+
+        <div class="name">Grapes & Cream</div>
+
+      </div>
+
+      <div class="card" onclick="openDetail('images/AlienCookies.jpg','14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500','Alien Cookies','Strong hybrid with earthy aroma.')">
+
+        <img class="property" src="images/AlienCookies.jpg" />
+
+        <div class="price">$52 - $1,150</div>
+
+        <div class="name">Alien Cookies</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+
+  <div id="faq" class="tab-section">
+
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-box">
+
+      <div class="faq-item">
+        <h3>How do I place an order?</h3>
+        <p>Contact through Telegram or Signal with the item you're interested in.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do you offer bulk pricing?</h3>
+        <p>Yes, bulk pricing may be available depending on quantity.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>HWhat are shipping costs?</h3>
+        <p>QP> $10, HP> $15, LB $25</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What payment methods are accepted?</h3>
+        <p>Payment details are discussed directly through contact methods.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- GLOBAL CONTACT -->
+
+<div class="contact global-contact">
+
+  <h2>Contact</h2>
+
+  <p>Telegram: @kingbagg</p>
+
+  <p>Signal: @kingbagg.01</p>
+  
+<!-- GLOBAL CONTACT -->
+<div class="contact global-contact">
+
+  <h3>PGP Key</h3>
+
+  <div id="pgpKey" style="display:none;">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: OpenPGP.js v.1.20130420
+Comment: http://openpgpjs.org
+
+xk0Eaa+C9wECAJiCir3eBkhhJet03nNsjbx7joGjOihJmDlFM+qNBAkMlB+X
+AfcWK1xGNCq2ekm+ssx7Bay+lR1pobhQrpHJS+sAEQEAAc0kVGVzdCBNY1Rl
+c3Rpbmd0b24gPHRlc3RAZXhhbXBsZS5jb20+wlwEEAEIABAFAmmvgvgJEPAN
+QB7tY8rVAAATEQH6A0QmN1Q+pBxdiGeJJyzdO899Qoi6A0WfOvyhfq5kG2Cb
+cgSLyV9eXTxNh0z/XFopx5CBR/Id6kSWSl594rBWDg==
+=h5la
+-----END PGP PUBLIC KEY BLOCK-----
+  </div>
+
+  <p>-----BEGIN PGP PUBLIC KEY BLOCK-----</p>
+  <p>Version: OpenPGP.js v.1.20130420<br>
+  Comment: http://openpgpjs.org</p>
+
+  <p>
+    xk0Eaa+C9wECAJiCir3eBkhhJet03nNsjbx7joGjOihJmDlFM+qNBAkMlB+X<br>
+    AfcWK1xGNCq2ekm+ssx7Bay+lR1pobhQrpHJS+sAEQEAAc0kVGVzdCBNY1Rl<br>
+    c3Rpbmd0b24gPHRlc3RAZXhhbXBsZS5jb20+wlwEEAEIABAFAmmvgvgJEPAN<br>
+    QB7tY8rVAAATEQH6A0QmN1Q+pBxdiGeJJyzdO899Qoi6A0WfOvyhfq5kG2Cb<br>
+    cgSLyV9eXTxNh0z/XFopx5CBR/Id6kSWSl594rBWDg==<br>
+    =h5la
+  </p>
+
+  <p>-----END PGP PUBLIC KEY BLOCK-----</p>
+
+
+</div>
+
+<script>
+function copyPGP() {
+  const pgpText = document.getElementById("pgpKey").textContent.trim();
+
+  navigator.clipboard.writeText(pgpText).then(() => {
+    const btn = document.getElementById("copyBtn");
+    btn.textContent = "Copied!";
+    setTimeout(() => {
+      btn.textContent = "Copy PGP Key";
+    }, 2000);
+  });
+}
+</script>
+
+<div class="contact global-contact">
+
+
+  </div>
+
+</div>
+
+<style>
+.pgp-box {
+  margin-top: 25px;
+  text-align: left;
+}
+
+.pgp-box h3 {
+  color: #6d28d9;
+  margin-bottom: 10px;
+}
+
+.pgp-box textarea {
+  width: 100%;
+  min-height: 350px;
+  resize: vertical;
+
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+
+  font-family: monospace;
+  font-size: 13px;
+  line-height: 1.5;
+
+  box-sizing: border-box;
+}
+
+.copy-btn {
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.copy-btn:hover {
+  background: #5b21b6;
+}
+</style>
+
+<script>
+function copyPGP() {
+  const pgp = document.getElementById('pgpKey').value;
+
+  navigator.clipboard.writeText(pgp).then(() => {
+    alert('PGP key copied to clipboard');
+  }).catch(() => {
+    const textarea = document.getElementById('pgpKey');
+    textarea.select();
+    document.execCommand('copy');
+    alert('PGP key copied to clipboard');
+  });
+}
+</script>
+
+  
+  
+
+</div>
+
+<!-- DETAIL PAGE -->
+
+<div class="detail" id="detailPage">
+
+  <button class="back" onclick="goBack()">← Back</button>
+
+  <img id="detailImg" />
+
+  <h2 id="detailName"></h2>
+
+  <div class="price" id="detailPrice"></div>
+
+  <p id="detailDesc"></p>
+
+</div>
+
+<script>
+
+  function enterSite() {
+    document.getElementById('landingPage').style.display = 'none';
+  }
+
+  function openDetail(img, price, name, desc) {
+
+    document.getElementById('mainPage').style.display = 'none';
+
+    document.getElementById('detailPage').style.display = 'block';
+
+    document.getElementById('detailImg').src = img;
+
+    document.getElementById('detailPrice').innerText = price;
+
+    document.getElementById('detailName').innerText = name;
+
+    document.getElementById('detailDesc').innerText = desc || '';
+  }
+
+  function goBack() {
+
+    document.getElementById('mainPage').style.display = 'block';
+
+    document.getElementById('detailPage').style.display = 'none';
+  }
+
+  function showTab(tabId, element) {
+
+    document.querySelectorAll('.tab-section').forEach(section => {
+      section.classList.remove('active');
+    });
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    document.getElementById(tabId).classList.add('active');
+
+    element.classList.add('active');
+  }
+
+</script>
+
+</body>
+</html>
