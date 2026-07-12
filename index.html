@@ -7,7 +7,6 @@
   <title>The Kings Quest</title>
 
   <style>
-
     body {
       font-family: Arial, sans-serif;
       background: #ffffff;
@@ -29,7 +28,6 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.65);
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,7 +38,6 @@
       text-align: center;
       color: white;
       max-width: 650px;
-
       animation: fadeIn 0.8s ease;
     }
 
@@ -130,6 +127,10 @@
       margin: auto;
     }
 
+    #mainPage {
+      display: none;
+    }
+
     .tabs {
       display: flex;
       justify-content: center;
@@ -175,10 +176,8 @@
       cursor: pointer;
       transition: 0.2s;
       border: 1px solid #eee;
-
       display: flex;
       flex-direction: column;
-
       height: 320px;
     }
 
@@ -220,44 +219,12 @@
       border: 1px solid #eee;
     }
 
-    /* GLOBAL CONTACT */
-
     .global-contact {
       max-width: 1100px;
       margin: 40px auto;
     }
 
-    .detail {
-      display: none;
-      max-width: 800px;
-      margin: auto;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #eee;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .detail img {
-      width: 100%;
-      border-radius: 10px;
-      max-height: 500px;
-      object-fit: cover;
-    }
-
-    .back {
-      margin-bottom: 15px;
-      padding: 10px 14px;
-      background: #6d28d9;
-      border: none;
-      color: white;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-
-    .back:hover {
-      background: #5b21b6;
-    }
+    /* TAB SECTIONS */
 
     .tab-section {
       display: none;
@@ -285,314 +252,364 @@
       margin-bottom: 8px;
     }
 
+    /* DETAIL "PAGE" */
+
+    #detailPage {
+      display: none;
+      max-width: 800px;
+      margin: 30px auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    #detailPage img {
+      width: 100%;
+      border-radius: 10px;
+      max-height: 500px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    #detailPage h2 {
+      margin-top: 0;
+      color: #6d28d9;
+    }
+
+    .detail-description {
+      margin-bottom: 15px;
+    }
+
+    .detail-prices {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid #eee;
+      font-family: monospace;
+      white-space: pre-line;
+    }
+
+    .back {
+      margin-bottom: 15px;
+      padding: 10px 14px;
+      background: #6d28d9;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .back:hover {
+      background: #5b21b6;
+    }
+
+    /* PGP */
+
+    .pgp-box {
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    .pgp-box h3 {
+      color: #6d28d9;
+      margin-bottom: 10px;
+    }
+
+    .pgp-box textarea {
+      width: 100%;
+      min-height: 350px;
+      resize: vertical;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      box-sizing: border-box;
+    }
+
+    .copy-btn {
+      margin-top: 12px;
+      padding: 12px 18px;
+      background: #6d28d9;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .copy-btn:hover {
+      background: #5b21b6;
+    }
   </style>
 </head>
 
 <body>
 
-<!-- LANDING PAGE -->
+  <!-- LANDING PAGE -->
+  <div id="landingPage" class="landing-page">
+    <div class="landing-overlay">
+      <div class="landing-content">
+        <img src="images/Main.jpg" class="landing-logo" />
+        <h1>Welcome to The Kings Quest</h1>
+        <p>
+          Premium selections curated with quality, consistency, and experience in mind.
+          Explore our collection and discover what sets The Kings Quest apart.
+        </p>
+        <button class="enter-btn" onclick="enterSite()">
+          Enter Site
+        </button>
+      </div>
+    </div>
+  </div>
 
-<div id="landingPage" class="landing-page">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">
+      <img src="images/Main.jpg" />
+      <span>The Kings Quest</span>
+    </div>
+  </div>
 
-  <div class="landing-overlay">
+  <!-- MAIN WEBSITE (LISTINGS / FAQ) -->
+  <div class="container" id="mainPage">
 
-    <div class="landing-content">
+    <div class="tabs">
+      <div class="tab active" onclick="showTab('flower', this)">TinySnail's Garden</div>
+      <div class="tab" onclick="showTab('faq', this)">FAQ</div>
+    </div>
 
-      <img src="images/Main.jpg" class="landing-logo" />
+    <!-- LISTINGS "PAGE" -->
+    <div id="flower" class="tab-section active">
+      <h1>TinySnail's Garden</h1>
 
-      <h1>Welcome to The Kings Quest</h1>
+      <div class="grid">
 
-      <p>
-        Premium selections curated with quality, consistency, and experience in mind.
-        Explore our collection and discover what sets The Kings Quest apart.
-      </p>
+        <div class="card" onclick="viewListing(
+          'images/grapes.jpg',
+          'Grapes & Cream',
+          'Smooth creamy flavor with fruity notes.',
+          '14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500'
+        )">
+          <img class="property" src="images/grapes.jpg" />
+          <div class="price">$52 - $1150</div>
+          <div class="name">Grapes & Cream</div>
+        </div>
 
-      <button class="enter-btn" onclick="enterSite()">
-        Enter Site
-      </button>
+        <div class="card" onclick="viewListing(
+          'images/AlienCookies.jpg',
+          'Alien Cookies',
+          'Strong hybrid with earthy aroma.',
+          '14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500'
+        )">
+          <img class="property" src="images/AlienCookies.jpg" />
+          <div class="price">$52 - $1150</div>
+          <div class="name">Alien Cookies</div>
+        </div>
 
+        <div class="card" onclick="viewListing(
+          'images/AlienCookies.jpg',
+          'Alien Cookies',
+          'Strong hybrid with earthy aroma.',
+          '14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500'
+        )">
+          <img class="property" src="images/AlienCookies.jpg" />
+          <div class="price">$52 - $1150</div>
+          <div class="name">Alien Cookies</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FAQ "PAGE" -->
+    <div id="faq" class="tab-section">
+      <h1>Frequently Asked Questions</h1>
+
+      <div class="faq-box">
+        <div class="faq-item">
+          <h3>How do I place an order?</h3>
+          <p>Contact through Signal with the item you're interested in.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer bulk pricing?</h3>
+          <p>Yes, bulk pricing may be available depending on quantity.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What are shipping costs?</h3>
+          <p>QP> $10, HP> $15, LB $25</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What payment methods are accepted?</h3>
+          <p>Payment details are discussed directly through contact methods.</p>
+        </div>
+      </div>
     </div>
 
   </div>
 
-</div>
-
-<!-- MAIN WEBSITE -->
-
-<div class="header">
-
-  <div class="logo">
-    <img src="images/Main.jpg" />
-    <span>The Kings Quest</span>
+  <!-- DETAIL "PAGE" -->
+  <div id="detailPage">
+    <button class="back" onclick="backToListings()">Back to listings</button>
+    <img id="detailImage" src="" alt="Listing image" />
+    <h2 id="detailName"></h2>
+    <p id="detailDescription" class="detail-description"></p>
+    <div id="detailPrices" class="detail-prices"></div>
   </div>
 
-</div>
-
-<div class="container" id="mainPage">
-
-  <div class="tabs">
-    <div class="tab active" onclick="showTab('flower', this)">Flower</div>
-    <div class="tab" onclick="showTab('faq', this)">FAQ</div>
+  <!-- CONTACT -->
+  <div class="contact global-contact">
+    <h2>Contact</h2>
+    <p>Signal: @TinySnail.01</p>
   </div>
 
-  <!-- FLOWER -->
-
-  <div id="flower" class="tab-section active">
-
-    <h1>Flower</h1>
-
-    <div class="grid">
-
-      <div class="card" onclick="openDetail('images/grapes.jpg','14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500','Grapes & Cream','Smooth creamy flavor with fruity notes.')">
-
-        <img class="property" src="images/grapes.jpg" />
-
-        <div class="price">$52 - $1150</div>
-
-        <div class="name">Grapes & Cream</div>
-
-      </div>
-
-      <div class="card" onclick="openDetail('images/AlienCookies.jpg','14g 52 | 1oz 94 | QP 325 | HP 600 | LB 1150 | 5 LB 5500','Alien Cookies','Strong hybrid with earthy aroma.')">
-
-        <img class="property" src="images/AlienCookies.jpg" />
-
-        <div class="price">$52 - $1,150</div>
-
-        <div class="name">Alien Cookies</div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- FAQ -->
-
-  <div id="faq" class="tab-section">
-
-    <h1>Frequently Asked Questions</h1>
-
-    <div class="faq-box">
-
-      <div class="faq-item">
-        <h3>How do I place an order?</h3>
-        <p>Contact through Telegram or Signal with the item you're interested in.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Do you offer bulk pricing?</h3>
-        <p>Yes, bulk pricing may be available depending on quantity.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>HWhat are shipping costs?</h3>
-        <p>QP> $10, HP> $15, LB $25</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>What payment methods are accepted?</h3>
-        <p>Payment details are discussed directly through contact methods.</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- GLOBAL CONTACT -->
-
-<div class="contact global-contact">
-
-  <h2>Contact</h2>
-
-  <p>Telegram: @kingbagg</p>
-
-  <p>Signal: @kingbagg.01</p>
-  
-<!-- GLOBAL CONTACT -->
-<div class="contact global-contact">
-
-  <h3>PGP Key</h3>
-
-  <div id="pgpKey" style="display:none;">
+  <!-- PGP -->
+  <div class="contact global-contact" id="pgpSection">
+    <div class="pgp-box">
+      <h3>PGP Key</h3>
+      <textarea id="pgpKey" readonly>
 -----BEGIN PGP PUBLIC KEY BLOCK-----
-Version: OpenPGP.js v.1.20130420
-Comment: http://openpgpjs.org
-
-xk0Eaa+C9wECAJiCir3eBkhhJet03nNsjbx7joGjOihJmDlFM+qNBAkMlB+X
-AfcWK1xGNCq2ekm+ssx7Bay+lR1pobhQrpHJS+sAEQEAAc0kVGVzdCBNY1Rl
-c3Rpbmd0b24gPHRlc3RAZXhhbXBsZS5jb20+wlwEEAEIABAFAmmvgvgJEPAN
-QB7tY8rVAAATEQH6A0QmN1Q+pBxdiGeJJyzdO899Qoi6A0WfOvyhfq5kG2Cb
-cgSLyV9eXTxNh0z/XFopx5CBR/Id6kSWSl594rBWDg==
-=h5la
+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
+fiLsQN5xBoE66EIngyfbQQomrIE=
+=dWQe
 -----END PGP PUBLIC KEY BLOCK-----
+      </textarea>
+      <button class="copy-btn" onclick="copyPGP()">Copy PGP Key</button>
+    </div>
   </div>
 
-  <p>-----BEGIN PGP PUBLIC KEY BLOCK-----</p>
-  <p>Version: OpenPGP.js v.1.20130420<br>
-  Comment: http://openpgpjs.org</p>
+  <script>
+    function enterSite() {
+      const landing = document.getElementById('landingPage');
+      const main = document.getElementById('mainPage');
 
-  <p>
-    xk0Eaa+C9wECAJiCir3eBkhhJet03nNsjbx7joGjOihJmDlFM+qNBAkMlB+X<br>
-    AfcWK1xGNCq2ekm+ssx7Bay+lR1pobhQrpHJS+sAEQEAAc0kVGVzdCBNY1Rl<br>
-    c3Rpbmd0b24gPHRlc3RAZXhhbXBsZS5jb20+wlwEEAEIABAFAmmvgvgJEPAN<br>
-    QB7tY8rVAAATEQH6A0QmN1Q+pBxdiGeJJyzdO899Qoi6A0WfOvyhfq5kG2Cb<br>
-    cgSLyV9eXTxNh0z/XFopx5CBR/Id6kSWSl594rBWDg==<br>
-    =h5la
-  </p>
+      if (landing) landing.style.display = 'none';
+      if (main) main.style.display = 'block';
+    }
 
-  <p>-----END PGP PUBLIC KEY BLOCK-----</p>
+    function showTab(tabId, tabElement) {
+      document.querySelectorAll('.tab-section').forEach(section => {
+        section.classList.remove('active');
+      });
 
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
 
-</div>
+      const section = document.getElementById(tabId);
+      if (section) section.classList.add('active');
 
-<script>
-function copyPGP() {
-  const pgpText = document.getElementById("pgpKey").textContent.trim();
+      if (tabElement) tabElement.classList.add('active');
+    }
 
-  navigator.clipboard.writeText(pgpText).then(() => {
-    const btn = document.getElementById("copyBtn");
-    btn.textContent = "Copied!";
-    setTimeout(() => {
-      btn.textContent = "Copy PGP Key";
-    }, 2000);
-  });
-}
-</script>
+    // "Navigate" into listing detail page (same file)
+    function viewListing(imageSrc, name, description, prices) {
+      const mainPage = document.getElementById('mainPage');
+      const detailPage = document.getElementById('detailPage');
 
-<div class="contact global-contact">
+      const detailImage = document.getElementById('detailImage');
+      const detailName = document.getElementById('detailName');
+      const detailDescription = document.getElementById('detailDescription');
+      const detailPrices = document.getElementById('detailPrices');
 
+      if (detailImage) detailImage.src = imageSrc;
+      if (detailName) detailName.textContent = name;
+      if (detailDescription) detailDescription.textContent = description;
 
-  </div>
+      if (detailPrices) {
+        const parts = prices.split('|').map(p => p.trim());
+        detailPrices.innerHTML = parts.map(p => '- ' + p).join('\n');
+      }
 
-</div>
+      if (mainPage) mainPage.style.display = 'none';
+      if (detailPage) {
+        detailPage.style.display = 'block';
+        detailPage.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
-<style>
-.pgp-box {
-  margin-top: 25px;
-  text-align: left;
-}
+    function backToListings() {
+      const mainPage = document.getElementById('mainPage');
+      const detailPage = document.getElementById('detailPage');
 
-.pgp-box h3 {
-  color: #6d28d9;
-  margin-bottom: 10px;
-}
+      if (detailPage) detailPage.style.display = 'none';
+      if (mainPage) mainPage.style.display = 'block';
 
-.pgp-box textarea {
-  width: 100%;
-  min-height: 350px;
-  resize: vertical;
+      const flowerSection = document.getElementById('flower');
+      if (flowerSection) flowerSection.scrollIntoView({ behavior: 'smooth' });
+    }
 
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  background: #fff;
+    function copyPGP() {
+      const textarea = document.getElementById('pgpKey');
+      if (!textarea) return;
 
-  font-family: monospace;
-  font-size: 13px;
-  line-height: 1.5;
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
 
-  box-sizing: border-box;
-}
+      try {
+        document.execCommand('copy');
+        alert('PGP key copied to clipboard.');
+      } catch (e) {
+        alert('Unable to copy. Please copy manually.');
+      }
+    }
 
-.copy-btn {
-  margin-top: 12px;
-  padding: 12px 18px;
-  background: #6d28d9;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.copy-btn:hover {
-  background: #5b21b6;
-}
-</style>
-
-<script>
-function copyPGP() {
-  const pgp = document.getElementById('pgpKey').value;
-
-  navigator.clipboard.writeText(pgp).then(() => {
-    alert('PGP key copied to clipboard');
-  }).catch(() => {
-    const textarea = document.getElementById('pgpKey');
-    textarea.select();
-    document.execCommand('copy');
-    alert('PGP key copied to clipboard');
-  });
-}
-</script>
-
-  
-  
-
-</div>
-
-<!-- DETAIL PAGE -->
-
-<div class="detail" id="detailPage">
-
-  <button class="back" onclick="goBack()">← Back</button>
-
-  <img id="detailImg" />
-
-  <h2 id="detailName"></h2>
-
-  <div class="price" id="detailPrice"></div>
-
-  <p id="detailDesc"></p>
-
-</div>
-
-<script>
-
-  function enterSite() {
-    document.getElementById('landingPage').style.display = 'none';
-  }
-
-  function openDetail(img, price, name, desc) {
-
-    document.getElementById('mainPage').style.display = 'none';
-
-    document.getElementById('detailPage').style.display = 'block';
-
-    document.getElementById('detailImg').src = img;
-
-    document.getElementById('detailPrice').innerText = price;
-
-    document.getElementById('detailName').innerText = name;
-
-    document.getElementById('detailDesc').innerText = desc || '';
-  }
-
-  function goBack() {
-
-    document.getElementById('mainPage').style.display = 'block';
-
-    document.getElementById('detailPage').style.display = 'none';
-  }
-
-  function showTab(tabId, element) {
-
-    document.querySelectorAll('.tab-section').forEach(section => {
-      section.classList.remove('active');
+    document.addEventListener('DOMContentLoaded', () => {
+      const flowerSection = document.getElementById('flower');
+      if (flowerSection) flowerSection.classList.add('active');
     });
-
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.classList.remove('active');
-    });
-
-    document.getElementById(tabId).classList.add('active');
-
-    element.classList.add('active');
-  }
-
-</script>
+  </script>
 
 </body>
 </html>
